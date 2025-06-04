@@ -1,7 +1,11 @@
-import pool from './../db';
-import { FichaConPaciente } from './../models/fichaConPaciente';
-
-export const obtenerFichasFirmadas = async (): Promise<FichaConPaciente[]> => {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.actualizarFirma = exports.obtenerFichasFirmadas = void 0;
+const db_1 = __importDefault(require("./../db"));
+const obtenerFichasFirmadas = async () => {
     const sql = `
     SELECT
         f.id_ficha,
@@ -18,30 +22,26 @@ export const obtenerFichasFirmadas = async (): Promise<FichaConPaciente[]> => {
     WHERE f.firma_medico = true OR f.firma_enfermeria = true
     ORDER BY f.id_ficha DESC;
     `;
-    const result = await pool.query<FichaConPaciente>(sql);
+    const result = await db_1.default.query(sql);
     return result.rows;
-}
-export const actualizarFirma = async (
-    id_ficha: number,
-    desfirmarMedico: boolean,
-    desfirmarEnfermeria: boolean
-): Promise<void> => {
+};
+exports.obtenerFichasFirmadas = obtenerFichasFirmadas;
+const actualizarFirma = async (id_ficha, desfirmarMedico, desfirmarEnfermeria) => {
     if (!desfirmarMedico && !desfirmarEnfermeria) {
         throw new Error('Al menos una de las opciones (desfirmarMedico/desfirmarEnfermeria) debe ser true');
     }
-
-    const camposParaSet: string[] = [];
+    const camposParaSet = [];
     if (desfirmarMedico) {
         camposParaSet.push('firma_medico = false');
     }
     if (desfirmarEnfermeria) {
         camposParaSet.push('firma_enfermeria = false');
     }
-
     const sql = `
         UPDATE ficha
         SET ${camposParaSet.join(', ')}
         WHERE id_ficha = $1;
     `;
-    await pool.query(sql, [id_ficha]);
-}
+    await db_1.default.query(sql, [id_ficha]);
+};
+exports.actualizarFirma = actualizarFirma;

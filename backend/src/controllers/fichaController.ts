@@ -26,9 +26,11 @@ export const putDesfirmar = async (req: Request, res: Response):Promise<void> =>
         res.json({ message: 'Actualización exitosa' });
     } catch (error) {
         console.error('Error en putDesfirmar:', error);
+
+        const err = error as Error;
         
-        if ( error.message.includes('Al menos una de las opciones')) {
-            res.status(400).json({ error: error.message });
+        if ( err.message.includes('Al menos una de las opciones')) {
+            res.status(400).json({ error: err.message });
             return;
         }
         res.status(500).json({ error: 'Error al actualizar la firma' });

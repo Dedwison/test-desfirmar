@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/index.tsx","./src/vite-env.d.ts","./src/api/fichaApi.ts","./src/components/ConfirmarModal.tsx","./src/components/DesfirmarTable.tsx","./src/components/LoadingSpinner.tsx","./src/hooks/useFichas.ts","./src/pages/Home.tsx","./src/theme/index.ts","./src/types/ficha.ts"],"version":"5.8.3"}
