@@ -18,11 +18,11 @@ const seed = async () => {
         await pool.query(`
             INSERT INTO ficha (id_paciente, fecha, firma_medico, firma_enfermeria)
             VALUES
-                    (1, '2023-10-01', 1::boolean, 0::boolean),
-                    (2, '2023-10-02', 1::boolean, 1::boolean),
-                    (3, '2023-10-03', 0::boolean, 1::boolean),
-                    (4, '2023-10-04', 1::boolean, 0::boolean),
-                    (5, '2023-10-05', 0::boolean, 0::boolean);
+                    (1, '2023-10-01', 1, 0),
+                    (2, '2023-10-02', 1, 1),
+                    (3, '2023-10-03', 0, 1),
+                    (4, '2023-10-04', 1, 0),
+                    (5, '2023-10-05', 0, 0);
         `);
         console.log('Datos de prueba insertados correctamente');
         process.exit(0);

@@ -15,7 +15,7 @@ export const obtenerFichasFirmadas = async (): Promise<FichaConPaciente[]> => {
         p.rut
     FROM ficha f
     JOIN paciente p ON f.id_paciente = p.id_paciente
-    WHERE f.firma_medico = true OR f.firma_enfermeria = true
+    WHERE f.firma_medico = 1 OR f.firma_enfermeria = 1
     ORDER BY f.id_ficha DESC;
     `;
     const result = await pool.query<FichaConPaciente>(sql);
@@ -32,10 +32,10 @@ export const actualizarFirma = async (
 
     const camposParaSet: string[] = [];
     if (desfirmarMedico) {
-        camposParaSet.push('firma_medico = false');
+        camposParaSet.push('firma_medico = 0');
     }
     if (desfirmarEnfermeria) {
-        camposParaSet.push('firma_enfermeria = false');
+        camposParaSet.push('firma_enfermeria = 0');
     }
 
     const sql = `
