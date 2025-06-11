@@ -42,7 +42,7 @@ const DesfirmarTable = ({ fichas, onClickDesfirmar }: Props) => {
 
                 const botones: JSX.Element[] = [];
 
-                if (ficha.firma_medico === true) {
+                if (ficha.firma_medico === 1) {
                     botones.push(
                         <Button
                             key="medico"
@@ -56,7 +56,7 @@ const DesfirmarTable = ({ fichas, onClickDesfirmar }: Props) => {
                     );
                 }
 
-                if (ficha.firma_enfermeria === true) {
+                if (ficha.firma_enfermeria === 1) {
                     botones.push(
                         <Button
                             key="enfermeria"
@@ -71,7 +71,7 @@ const DesfirmarTable = ({ fichas, onClickDesfirmar }: Props) => {
                     );
                 }
 
-                if (ficha.firma_medico === true && ficha.firma_enfermeria === true) {
+                if (ficha.firma_medico === 1 && ficha.firma_enfermeria === 1) {
                     botones.push(
                         <Button
                             key="ambos"

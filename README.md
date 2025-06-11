@@ -55,8 +55,8 @@ CREATE TABLE ficha (
     id_ficha SERIAL PRIMARY KEY,
     id_paciente INTEGER REFERENCES paciente(id_paciente),
     fecha DATE NOT NULL,
-    firma_medico BOOLEAN DEFAULT FALSE,
-    firma_enfermeria BOOLEAN DEFAULT FALSE
+    firma_medico INTEGER NOT NULL DEFAULT 0,
+    firma_enfermeria INTEGER NOT NULL DEFAULT 0
 );
 ```
 
