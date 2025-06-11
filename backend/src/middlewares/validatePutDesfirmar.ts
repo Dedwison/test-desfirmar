@@ -9,8 +9,11 @@ export const validatePutDesfirmar = (req: Request, res: Response, next: NextFunc
         return
     }
 
-    if (typeof desfirmarMedico !== 'boolean' || typeof desfirmarEnfermeria !== 'boolean') {
-        res.status(400).json({ error: 'Los campos desfirmarMedico y desfirmarEnfermeria deben ser booleanos' });
+    const valoresPermitidos = [0, 1];
+
+    if (!valoresPermitidos.includes(desfirmarMedico) ||
+    !valoresPermitidos.includes(desfirmarEnfermeria)) {
+        res.status(400).json({ error: 'Los campos desfirmarMedico y desfirmarEnfermeria deben ser 0 o 1 (números enteros)' });
         return
     }
 
